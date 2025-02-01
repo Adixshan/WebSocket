@@ -1,0 +1,28 @@
+group("default") {
+  deps = [
+    "//src",
+    "//tests",
+  ]
+}
+
+# src/BUILD.gn
+source_set("src") {
+  sources = [
+    "main.cpp",
+    "WebSocketClient.cpp",
+    "CommandLineInterface.cpp",
+  ]
+  configs = [ ":common_flags" ]
+}
+
+config("common_flags") {
+  cflags = [ "-std=c++17", "-Wall", "-Wextra" ]
+}
+
+# tests/BUILD.gn
+source_set("tests") {
+  sources = [
+    "WebSocketClientTest.cpp",
+  ]
+  deps = [ "//src" ]
+}
